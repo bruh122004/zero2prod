@@ -1,4 +1,5 @@
 use config::{Config, File};
+use secrecy::{ExposeSecret, SecretBox};
 use serde::Deserialize;
 
 #[derive(Deserialize, Debug)]
@@ -25,10 +26,16 @@ pub fn get_configueration() -> Result<Settings, config::ConfigError> {
 }
 
 impl DatabaseSettings {
-    pub fn connection_string(&self) -> String {
-        format!(
+    pub fn connection_string(&self) -> SecretBox<String> {
+        SecretBox::new(Box::new(format!(
             "postgres://{}:{}@{}:{}/{}",
             self.username, self.password, self.host, self.port, self.database_name
-        )
+        )))
+    }
+    pub fn connection_string_without_db(&self) -> SecretBox<String> {
+        SecretBox::new(Box::new(format!(
+            "postgres://{}:{}@{}:{}",
+            self.username, self.password, self.host, self.port
+        )))
     }
 }

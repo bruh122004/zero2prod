@@ -1,7 +1,7 @@
 pub mod configuerations;
 pub mod routes;
 pub mod startup;
-
+pub mod telemetry;
 use actix_web::{get, post, HttpResponse, Responder};
 
 #[get("/")]

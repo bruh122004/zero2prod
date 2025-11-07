@@ -1,0 +1,24 @@
+There are several, depending on how serious and regulated your software is supposed to be. Think of them as the "laws of physics" for anyone touching money, passwords, or user data:
+
+**For financial or payment systems:**
+
+* **PCI DSS (Payment Card Industry Data Security Standard)** — if your app handles credit cards directly, you *must* follow this. It covers encryption, access control, and network segmentation.
+* **SOC 2** — a broader standard for software systems that store sensitive data (used by SaaS companies). Focuses on security, availability, and confidentiality.
+* **ISO/IEC 27001** — international information security management standard, kind of the "big umbrella" certification.
+* **PSD2 / Open Banking regulations** (EU/UK-specific) — defines how financial APIs must authenticate and authorize securely.
+
+**For subscription-based or account-driven apps:**
+
+* **OWASP ASVS (Application Security Verification Standard)** — a detailed checklist for building secure web software (authentication, input validation, crypto, session management).
+* **OAuth 2.0 / OpenID Connect** — standard protocols for authentication and secure user identity.
+* **GDPR or CCPA** — for user privacy, data consent, and storage policies.
+
+So, if you’re writing something that deals with money or identity:
+
+1. Start with **OWASP ASVS** (it’s language-agnostic).
+2. Add **PCI DSS** if payments are involved.
+3. Implement **OAuth 2.0** for authentication.
+4. And for sanity’s sake, **encrypt everything at rest and in transit**.
+
+Want me to show you a minimal security stack (best practices) for, say, a Rust-based subscription API?
+
